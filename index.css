@@ -28,7 +28,7 @@
   display: flex;
 }
 
-.nav-Iteams > ul > li {
+.nav-Iteams > ul > .nav-Link {
   /* margin-left: 5px; */
   padding: 1rem;
   font-size: 25px;

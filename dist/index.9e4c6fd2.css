@@ -22,7 +22,7 @@
   display: flex;
 }
 
-.nav-Iteams > ul > li {
+.nav-Iteams > ul > .nav-Link {
   padding: 1rem;
   font-size: 25px;
   font-weight: bolder;
