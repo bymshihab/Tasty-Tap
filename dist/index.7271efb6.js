@@ -27552,6 +27552,8 @@ var _s = $RefreshSig$();
 const Body = ()=>{
     _s();
     const [listOfFilterRes, setListOfFilterRes] = (0, _react.useState)([]);
+    const [filteredRes, setFilteredRes] = (0, _react.useState)([]);
+    const [searchText, setSearchText] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
         fetchData();
     }, []);
@@ -27561,17 +27563,28 @@ const Body = ()=>{
         // console.log(json.data.cards);
         // json.data.cards.
         setListOfFilterRes(json.data?.cards);
+        setFilteredRes(json.data?.cards);
     };
-    let clikedbtn = function() {
-        // console.log("clicked btn");
-        console.log(listOfFilterRes, "all res");
+    let handleTopRatedRes = function() {
         let filtered = listOfFilterRes.filter((res)=>res.card?.card?.info?.avgRating > 4.1);
-        setListOfFilterRes(filtered);
+        setFilteredRes(filtered);
+    };
+    // handle Search
+    const handleSearch = ()=>{
+        // filter the UI and Update the UI
+        //Search text
+        const searchedRestaurent = listOfFilterRes.filter((res)=>(res.card?.card?.info?.name || "").toLowerCase().includes(searchText.toLowerCase()));
+        setFilteredRes(searchedRestaurent);
+        console.log(searchedRestaurent);
+    };
+    // handle search text onchage
+    const handleSeachOnchange = (e)=>{
+        setSearchText(e.target.value);
     };
     // conditional Rendering..
     if (listOfFilterRes.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/Body.jsx",
-        lineNumber: 37,
+        lineNumber: 56,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27579,42 +27592,71 @@ const Body = ()=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "filter",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    className: "filter-btn",
-                    onClick: clikedbtn,
-                    children: "Top Rated Restaurents"
-                }, void 0, false, {
-                    fileName: "src/components/Body.jsx",
-                    lineNumber: 44,
-                    columnNumber: 9
-                }, undefined)
-            }, void 0, false, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "search",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                type: "text",
+                                className: "search-box",
+                                value: searchText,
+                                onChange: handleSeachOnchange
+                            }, void 0, false, {
+                                fileName: "src/components/Body.jsx",
+                                lineNumber: 64,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                onClick: handleSearch,
+                                children: "Search"
+                            }, void 0, false, {
+                                fileName: "src/components/Body.jsx",
+                                lineNumber: 70,
+                                columnNumber: 11
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Body.jsx",
+                        lineNumber: 63,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                        className: "filter-btn",
+                        onClick: handleTopRatedRes,
+                        children: "Top Rated Restaurents"
+                    }, void 0, false, {
+                        fileName: "src/components/Body.jsx",
+                        lineNumber: 73,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/components/Body.jsx",
-                lineNumber: 43,
+                lineNumber: 62,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "res-container",
-                children: listOfFilterRes.map((resData)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurentCardDefault.default), {
+                children: filteredRes.map((resData)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurentCardDefault.default), {
                         resdata: resData
                     }, resData.card?.card?.info?.id, false, {
                         fileName: "src/components/Body.jsx",
-                        lineNumber: 50,
+                        lineNumber: 79,
                         columnNumber: 11
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/Body.jsx",
-                lineNumber: 48,
+                lineNumber: 77,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.jsx",
-        lineNumber: 41,
+        lineNumber: 60,
         columnNumber: 5
     }, undefined);
 };
-_s(Body, "+4UcAc52z/+QMvH4bxtG3889zyo=");
+_s(Body, "C9mMyl5qintToYzxuCI40K1POZ0=");
 _c = Body;
 exports.default = Body;
 var _c;
