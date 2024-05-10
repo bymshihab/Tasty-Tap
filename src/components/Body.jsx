@@ -3,28 +3,16 @@ import RestaurentCard from "./RestaurentCard";
 import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import useRestaurents from "../utils/useRestaurents";
 
 const Body = () => {
-  const [listOfFilterRes, setListOfFilterRes] = useState([]);
-  const [filteredRes, setFilteredRes] = useState([]);
   const [searchText, setSearchText] = useState("");
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const { listOfFilterRes, setListOfFilterRes, filteredRes, setFilteredRes } =
+    useRestaurents();
 
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&collection=83649&tags=layout_CCS_Biryani&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
-    );
-
-    const json = await data.json();
-    // console.log(json.data.cards);
-    // json.data.cards.
-    setListOfFilterRes(json.data?.cards);
-    setFilteredRes(json.data?.cards);
-  };
-
+  // top rated resturents
   let handleTopRatedRes = function () {
     let filtered = listOfFilterRes.filter(
       (res) => res.card?.card?.info?.avgRating > 4.1
@@ -42,14 +30,21 @@ const Body = () => {
         .includes(searchText.toLowerCase())
     );
     setFilteredRes(searchedRestaurent);
-
-    console.log(searchedRestaurent);
   };
 
   // handle search text onchage
   const handleSeachOnchange = (e) => {
     setSearchText(e.target.value);
   };
+
+  // checking online and offline
+  const onlineStatus = useOnlineStatus();
+  console.log(onlineStatus, "online status...");
+  if (onlineStatus === false) {
+    return (
+      <h1>Looks you are in offline!Please, Check your Internet Connection!</h1>
+    );
+  }
 
   // conditional Rendering..
   if (listOfFilterRes.length === 0) {
