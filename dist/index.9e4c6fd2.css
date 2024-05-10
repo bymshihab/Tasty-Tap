@@ -101,4 +101,10 @@
   padding: 0 2rem;
   font-size: large;
 }
+
+.user-card {
+  border: 1px solid #000;
+  margin: 1rem;
+  padding: 1rem;
+}
 /*# sourceMappingURL=index.9e4c6fd2.css.map */

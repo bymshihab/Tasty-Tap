@@ -93,24 +93,32 @@
   background-color: #f0f0f0;
 }
 
-.shimmer-img{
-
+.shimmer-img {
   height: 8rem;
   border-radius: 10px;
   background-color: gray;
 }
 
-.shimmer-name, .shimmer-name1, .shimmer-name2{
+.shimmer-name,
+.shimmer-name1,
+.shimmer-name2 {
   margin-top: 1rem;
   height: 2rem;
   border-radius: 10px;
   border: 1px solid gray;
 }
 
-.btn-login{
+.btn-login {
   padding: 0 2rem;
   height: 3rem;
   font-size: large;
   border-radius: 10px;
   background-color: rgb(86, 240, 86);
+}
+
+/* user card... */
+.user-card{
+  border: 1px solid black;
+  padding: 1rem;
+  margin: 1rem;
 }
