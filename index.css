@@ -122,3 +122,9 @@
   padding: 1rem;
   margin: 1rem;
 }
+
+/* profile img */
+.img-profile{
+  border-radius: 50%;
+  width: 10rem;
+}

@@ -35498,49 +35498,52 @@ var _user = require("./User");
 var _userDefault = parcelHelpers.interopDefault(_user);
 var _userClass = require("./UserClass");
 var _userClassDefault = parcelHelpers.interopDefault(_userClass);
-const AboutUs = ()=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                children: "This is about page"
-            }, void 0, false, {
-                fileName: "src/components/AboutUs.jsx",
-                lineNumber: 8,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userDefault.default), {
-                name: "Shihab(from function)"
-            }, void 0, false, {
-                fileName: "src/components/AboutUs.jsx",
-                lineNumber: 9,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userClassDefault.default), {
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+class AboutUs extends (0, _reactDefault.default).Component {
+    constructor(props){
+        super(props);
+        console.log("parent constructor");
+    }
+    componentDidMount() {
+        console.log("Parent componentDidMount.");
+    }
+    render() {
+        console.log("parent Render");
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userClassDefault.default), {
                 name: "shihab(from Class)",
-                location: "Dhaka, Bangladesh"
+                location: "Dhaka, Bangladesh",
+                child: "first"
             }, void 0, false, {
                 fileName: "src/components/AboutUs.jsx",
-                lineNumber: 10,
-                columnNumber: 7
-            }, undefined)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/AboutUs.jsx",
-        lineNumber: 7,
-        columnNumber: 5
-    }, undefined);
-};
-_c = AboutUs;
+                lineNumber: 24,
+                columnNumber: 10
+            }, this)
+        }, void 0, false, {
+            fileName: "src/components/AboutUs.jsx",
+            lineNumber: 23,
+            columnNumber: 7
+        }, this);
+    }
+}
+// const AboutUs = () => {
+//   return (
+//     <div>
+//       <h1>This is about page</h1>
+//       <User name={"Shihab(from function)"}></User>
+//       <UserClass name={"shihab(from Class)"} location={"Dhaka, Bangladesh"}></UserClass>
+//     </div>
+//   );
+// };
 exports.default = AboutUs;
-var _c;
-$RefreshReg$(_c, "AboutUs");
 
   $parcel$ReactRefreshHelpers$e850.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./User":"enwL1","./UserClass":"Vp2Fx"}],"enwL1":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./User":"enwL1","./UserClass":"Vp2Fx","react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"enwL1":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9e44 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -35638,38 +35641,42 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 class UserClass extends (0, _reactDefault.default).Component {
     constructor(props){
         super(props);
-        console.log(props);
+        // console.log(props);
         this.state = {
             count: 0,
             count2: 1
         };
+        this.state = {
+            userInfo: {
+                name: "Dummy",
+                location: "Default"
+            }
+        };
+    // console.log(`${this.props.child} child constructor`);
+    }
+    async componentDidMount() {
+        // console.log(`${this.props.child} child componentDidMount`);
+        const data = await fetch("https://api.github.com/users/bymshihab");
+        const json = await data.json();
+        console.log(json);
+        this.setState({
+            userInfo: json
+        });
     }
     render() {
-        const { name, location } = this.props;
-        const { count } = this.state;
+        // console.log(`${this.props.child} child render`);
+        // const { name, location } = this.props;
+        const { name, location, avatar_url } = this.state.userInfo;
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "user-card",
             children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                    children: [
-                        "Count: ",
-                        count
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/UserClass.js",
-                    lineNumber: 22,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    onClick: ()=>{
-                        this.setState({
-                            count: this.state.count + 1
-                        });
-                    },
-                    children: "Count"
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                    className: "img-profile",
+                    src: avatar_url,
+                    alt: ""
                 }, void 0, false, {
                     fileName: "src/components/UserClass.js",
-                    lineNumber: 23,
+                    lineNumber: 44,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -35679,7 +35686,7 @@ class UserClass extends (0, _reactDefault.default).Component {
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserClass.js",
-                    lineNumber: 32,
+                    lineNumber: 45,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
@@ -35689,20 +35696,20 @@ class UserClass extends (0, _reactDefault.default).Component {
                     ]
                 }, void 0, true, {
                     fileName: "src/components/UserClass.js",
-                    lineNumber: 33,
+                    lineNumber: 46,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                     children: "Contact: +8801990637762"
                 }, void 0, false, {
                     fileName: "src/components/UserClass.js",
-                    lineNumber: 34,
+                    lineNumber: 47,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/UserClass.js",
-            lineNumber: 21,
+            lineNumber: 43,
             columnNumber: 7
         }, this);
     }
